@@ -1,0 +1,28 @@
+def rightshift(array,t):
+    array = [str(t)] + array[0:-1]
+    return array
+
+def findkey(x,y,z,n):
+    for i in range(n):
+        major = max(x[8],y[10],z[10])
+
+        if x[8] == major:
+            t = int(x[13]) ^ int(x[16]) ^ int(x[17]) ^ int(x[18])
+            x = rightshift(x,t)
+        if y[10] == major:
+            t = int(y[20]) ^ int(y[21])
+            y = rightshift(y,t)
+        if z[10] == major:
+            t = int(z[7]) ^ int(z[20]) ^ int(z[21]) ^ int(z[22])
+            z = rightshift(z,t)
+        print(x,y,z)
+        key = int(x[18]) ^ int(y[21]) ^ int(z[22])
+        print("Key = ",key)
+    return x, y, z
+
+n = int(input("How many time you want to generate key: "))
+x =  "1010101010101010101" #input("Input x: ")
+y = "1100110011001100110011" #input("Input y: ")
+z = "11100011100011100011100" #input("Input z: ")
+
+arr = findkey(list(x),list(y),list(z),n)
